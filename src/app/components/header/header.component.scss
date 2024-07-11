@@ -1,0 +1,40 @@
+@import "../../../shared/mixins";
+@import "../../../shared/colors";
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: $woodsmoke;
+  &__logo-link {
+    display: block;
+    width: 6.25rem;
+    height: 6.25rem;
+    transition: fill 1s ease;
+    fill: $woodsmoke;
+    &:hover .header__logo__background {
+      fill: $gold_drop;
+    }
+  }
+  &__content {
+    @include flex(space-between, center);
+    padding: 1.3rem 3.75rem;
+  }
+  &__title {
+    font-size: 1rem;
+    text-align: right;
+    color: $white;
+    &__highlight {
+      font-weight: bold;
+    }
+
+    @media (min-width: 960px) {
+      font-size: 1.75rem;
+    }
+  }
+  &__subtitle {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-weight: 100;
+  }
+}
