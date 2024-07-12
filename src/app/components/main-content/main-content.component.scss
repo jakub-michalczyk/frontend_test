@@ -1,0 +1,233 @@
+@import "../../../shared/colors";
+@import "../../../shared/mixins";
+
+$mainContentPadding: 3.125rem 1.875rem;
+$blockPaddingMobile: 0 1rem 1.125rem 1rem;
+$blockPaddingTablet: 0 0rem 1.125rem 1rem;
+
+._full_size {
+  width: 100%;
+  height: 100%;
+}
+
+:host {
+  @extend ._full_size;
+  display: block;
+}
+
+.main__content {
+  @include flex(flex-start, center);
+  @extend ._full_size;
+  color: $white;
+  overflow-y: auto;
+  flex-direction: column;
+  background-color: $charade;
+  padding: $mainContentPadding;
+  box-sizing: border-box;
+
+  &__heading {
+    margin: 0;
+    font-size: 2.25rem;
+
+    &::after {
+      display: block;
+      content: "";
+      width: 75%;
+      height: 1px;
+      background-color: $white;
+      margin: 1.25rem auto 0 auto;
+    }
+  }
+
+  @media (min-width: 960px) {
+    padding: 5rem 3.75rem;
+  }
+}
+
+.wrapper {
+  @include flex(space-between, flex-start);
+  flex-wrap: wrap;
+  margin-top: 6.25rem;
+  width: 100%;
+}
+
+.block {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+  width: 100%;
+
+  &__title {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    text-align: center;
+
+    @media (min-width: 960px) {
+      margin-bottom: 4.688rem;
+    }
+  }
+
+  &__content {
+    text-align: center;
+    color: $waterloo;
+  }
+
+  &__paragraph {
+    margin: 0 0 1rem 0;
+  }
+
+  &__buttons__wrap {
+    @include flex(center, center);
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &__button {
+    font-size: 1.125rem;
+    border: 1px solid $white;
+    border-radius: 3px;
+    background: transparent;
+    color: $white;
+    min-width: 11.25rem;
+    height: 3.125rem;
+    font-weight: bold;
+    margin: $blockPaddingMobile;
+
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    &:hover:not([disabled]) {
+      background: linear-gradient(
+        61deg,
+        rgba(205, 115, 1, 1) 32%,
+        rgba(232, 161, 71, 1) 60%
+      );
+    }
+
+    @media (min-width: 640px) {
+      margin: $blockPaddingTablet;
+    }
+
+    @media (min-width: 960px) {
+      margin: 0 1.5rem 1.125rem 1.5rem;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 959px) {
+    &:nth-of-type(1),
+    &:nth-of-type(2) {
+      width: 50%;
+    }
+
+    &:nth-of-type(1) .block__title {
+      text-align: left;
+    }
+
+    &:nth-of-type(2) .block__title {
+      text-align: right;
+    }
+
+    &:nth-of-type(3) .block__title {
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 640px) {
+    &__buttons__wrap {
+      justify-content: flex-end;
+      flex-wrap: nowrap;
+    }
+  }
+
+  @media (min-width: 960px) {
+    width: 33.33%;
+
+    &__title {
+      text-align: center;
+      margin-bottom: 4.688rem;
+    }
+
+    &__buttons__wrap {
+      @include flex(center, center);
+      flex-wrap: wrap;
+    }
+
+    &__button {
+      margin: 0 1.5rem 1.125rem 1.5rem;
+    }
+  }
+}
+
+.radio__label {
+  font-weight: lighter;
+}
+
+.radio__wrapper {
+  @include flex(flex-start, center);
+  min-height: 30px;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 1.25rem;
+  padding-left: 60px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked ~ .checkmark:after {
+      display: block;
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background: transparent;
+    border: 5px solid #eee;
+    box-sizing: border-box;
+    border-radius: 50%;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      top: 5px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $white;
+    }
+  }
+
+  @media (min-width: 960px) {
+    min-height: 40px;
+    margin-bottom: 1.5rem;
+
+    .checkmark {
+      height: 40px;
+      width: 40px;
+
+      &:after {
+        top: 6px;
+        left: 6px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
