@@ -1,5 +1,6 @@
 @import "../../../shared/colors";
 @import "../../../shared/mixins";
+@import "../../../shared/buttons";
 
 $mainContentPadding: 3.125rem 1.875rem;
 $blockPaddingMobile: 0 1rem 1.125rem 1rem;
@@ -85,31 +86,8 @@ $blockPaddingTablet: 0 0rem 1.125rem 1rem;
   }
 
   &__button {
-    font-size: 1.125rem;
-    border: 1px solid $white;
-    border-radius: 3px;
-    background: transparent;
-    color: $white;
-    min-width: 11.25rem;
-    height: 3.125rem;
-    font-weight: bold;
+    @extend ._button;
     margin: $blockPaddingMobile;
-
-    cursor: pointer;
-
-    &:disabled {
-      cursor: default;
-      opacity: 0.6;
-    }
-
-    &:hover:not([disabled]) {
-      background: linear-gradient(
-        61deg,
-        rgba(205, 115, 1, 1) 32%,
-        rgba(232, 161, 71, 1) 60%
-      );
-    }
-
     @media (min-width: 640px) {
       margin: $blockPaddingTablet;
     }

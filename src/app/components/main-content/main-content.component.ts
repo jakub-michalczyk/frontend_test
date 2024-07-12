@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BlockContext, IData } from './main-content.model';
 import * as DATA from '../../../shared/data.json';
+import { ErrorModalService } from '../error-modal/services/error-modal.service';
 
 @Component({
   selector: 'app-main-content',
@@ -45,7 +46,10 @@ export class MainContentComponent {
   selectedContent: IData[] = [];
   availableData: IData[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private errorModalService: ErrorModalService
+  ) {
     this.setUpForm();
     this.initializeData();
   }
@@ -72,9 +76,16 @@ export class MainContentComponent {
     if (this.isDataEmpty()) return;
 
     if (this.selectedContent.length > 0) {
-      this.selectedContent = [this.getSelectedData()];
+      let newContentData = this.getSelectedData();
+      this.selectedContent[0].content === newContentData.content
+        ? this.errorModalService.showError(
+            'Element, który próbujesz zastąpić jest już dodany.'
+          )
+        : (this.selectedContent = [newContentData]);
     } else {
-      // Error handling
+      this.errorModalService.showError(
+        'Nie ma żadnego elementu do zastąpienia.'
+      );
     }
   }
 
@@ -87,6 +98,7 @@ export class MainContentComponent {
     } else if (this.formGroup.get('option')?.value !== 2) {
       // if array includes this element, and it isn't a random option than throw an error
       // Error handling
+      this.errorModalService.showError('Wybrany element już został dodany.');
     } else {
       let allRandomAdded = this.availableData
         .slice(2)
@@ -94,6 +106,9 @@ export class MainContentComponent {
 
       if (allRandomAdded) {
         // Error handling
+        this.errorModalService.showError(
+          'Wszystkie elementy zostały już dodane.'
+        );
       } else {
         let randomData = this.getSelectedData();
         while (this.selectedContent.includes(randomData)) {
