@@ -1,7 +1,9 @@
 @import "../../../shared/mixins";
 @import "../../../shared/colors";
+@import "../../../shared/constants";
 
 .header {
+  max-height: $header_height;
   position: sticky;
   top: 0;
   background-color: $woodsmoke;

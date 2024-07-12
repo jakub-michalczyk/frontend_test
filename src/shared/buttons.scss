@@ -1,0 +1,24 @@
+._button {
+  font-size: 1.125rem;
+  border: 1px solid $white;
+  border-radius: 3px;
+  background: transparent;
+  color: $white;
+  min-width: 11.25rem;
+  height: 3.125rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  &:hover:not([disabled]) {
+    background: linear-gradient(
+      61deg,
+      rgba(205, 115, 1, 1) 32%,
+      rgba(232, 161, 71, 1) 60%
+    );
+  }
+}

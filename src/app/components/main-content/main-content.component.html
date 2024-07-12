@@ -1,0 +1,48 @@
+<div class="main__content">
+	<h1 class="main__content__heading">Nagłowek H1</h1>
+	<div class="wrapper">
+		@for(block of blocks; track $index) {
+		<div class="block">
+			<h2 class="block__title">{{ block.title }}</h2>
+			<ng-container [ngTemplateOutlet]="getTemplate(block.key)"
+						  [ngTemplateOutletContext]="{ $implicit: block }"></ng-container>
+		</div>
+		}
+	</div>
+</div>
+
+<ng-template #formTemplate>
+	<form [formGroup]="formGroup">
+		@for(option of optionLabels; track $index) {
+		<label class="radio__wrapper">
+			<span class="radio__label">{{ option }}</span>
+			<input class="radio"
+				   formControlName="option"
+				   type="radio"
+				   name="option"
+				   [id]="$index"
+				   [value]="$index">
+			<span class="checkmark"></span>
+		</label>
+		}
+	</form>
+</ng-template>
+
+<ng-template #buttonsTemplate>
+	<div class="block__buttons__wrap">
+		<button class="block__button"
+				(click)="replaceContent()"
+				[disabled]="!(formValid$ | async)">ZASTĄP</button>
+		<button class="block__button"
+				(click)="addContent()"
+				[disabled]="!(formValid$ | async)">DOKLEJ</button>
+	</div>
+</ng-template>
+
+<ng-template #contentTemplate>
+	<div class="block__content">
+		@for(contentBlock of selectedContent; track $index) {
+		<p class="block__paragraph">{{ contentBlock.content }}</p>
+		}
+	</div>
+</ng-template>
