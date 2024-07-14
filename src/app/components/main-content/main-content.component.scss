@@ -56,6 +56,13 @@ $blockPaddingTablet: 0 0rem 1.125rem 1rem;
   flex-direction: column;
   width: 100%;
 
+  .form {
+    margin: 0 auto;
+    @media (min-width: 640px) {
+      margin: 0;
+    }
+  }
+
   &__title {
     width: 100%;
     font-weight: bold;
