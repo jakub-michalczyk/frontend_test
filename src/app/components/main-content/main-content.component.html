@@ -3,7 +3,11 @@
 	<div class="wrapper">
 		@for(block of blocks; track $index) {
 		<div class="block">
-			<h2 class="block__title">{{ block.title }}</h2>
+			<h2 class="block__title">
+				<app-long-text [heading]="true"
+							   [text]="block.title"
+							   [maxLength]="42"></app-long-text>
+			</h2>
 			<ng-container [ngTemplateOutlet]="getTemplate(block.key)"
 						  [ngTemplateOutletContext]="{ $implicit: block }"></ng-container>
 		</div>
@@ -12,7 +16,8 @@
 </div>
 
 <ng-template #formTemplate>
-	<form [formGroup]="formGroup">
+	<form [formGroup]="formGroup"
+		  class="form">
 		@for(option of optionLabels; track $index) {
 		<label class="radio__wrapper">
 			<span class="radio__label">{{ option }}</span>

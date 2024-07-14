@@ -20,11 +20,12 @@ import { FooterService } from '../footer/services/footer.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ModalService } from '../error-modal/services/modal.service';
 import { StorageService } from '../../../shared/services/storage.service';
+import { LongTextComponent } from '../long-text/long-text.component';
 
 @Component({
   selector: 'app-main-content',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LongTextComponent],
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.scss'],
 })
@@ -47,7 +48,8 @@ export class MainContentComponent {
     },
     {
       key: 'content',
-      title: 'BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE...',
+      title:
+        'BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE TEGO FRAGMENTU JUŻ NIE WIDAĆ',
     },
   ];
   formGroup!: FormGroup;
