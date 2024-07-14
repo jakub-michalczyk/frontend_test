@@ -42,7 +42,10 @@
 					rekrutacyjne
 				</span>
 			</div>
-			<div class="header__subtitle">Jan Kowalski</div>
+			<div class="header__subtitle"
+				 [ngClass]="{'header__subtitle__full__height': ((personalData$ | async)!.length > 0) }">
+				{{ personalData$ | async }}
+			</div>
 		</div>
 	</div>
 </header>

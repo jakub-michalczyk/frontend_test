@@ -1,0 +1,48 @@
+<div class="footer">
+	<input type="checkbox"
+		   (change)="updateButtonIcon()"
+		   id="toggle"
+		   class="toggle" />
+	<div class="slide__up">
+		<div class="slide__up__row"
+			 (click)="footerService.resetData()">
+			<span class="material-symbols-outlined">
+				chevron_right
+			</span>
+			ZRESETUJ USTAWIENIA
+		</div>
+		<div class="slide__up__row"
+			 (click)="footerService.showPersonalData()">
+			<span class="material-symbols-outlined">
+				chevron_right
+			</span>
+			POKAŻ DANE OSOBOWE
+		</div>
+		<div class="slide__up__row"
+			 (click)="editData()">
+			<span class="material-symbols-outlined">
+				chevron_right
+			</span>
+			EDYCJA DANYCH
+		</div>
+	</div>
+	<div class="footer__content">
+		<div class="footer__logo">
+			<div class="footer__logo__elem">CSS</div>
+			<div>IS</div>
+			<div>AWESOME</div>
+		</div>
+		<div class="footer__company__logo__wrap">
+			<span class="footer__company__logo">nabthat</span>
+		</div>
+		<div class="button__wrap">
+			<label class="button"
+				   for="toggle">
+				<span class="button__text">Pokaż</span>
+				<span class="material-symbols-outlined">
+					{{ icon() }}
+				</span>
+			</label>
+		</div>
+	</div>
+</div>

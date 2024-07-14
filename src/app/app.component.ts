@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
-import { ErrorModalComponent } from './components/error-modal/error-modal.component';
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
+import { ModalComponent } from './components/error-modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,9 @@ import { CommonModule } from '@angular/common';
     RouterOutlet,
     HeaderComponent,
     MainContentComponent,
-    ErrorModalComponent,
+    ModalComponent,
     CommonModule,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

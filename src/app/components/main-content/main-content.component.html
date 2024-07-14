@@ -41,7 +41,7 @@
 
 <ng-template #contentTemplate>
 	<div class="block__content">
-		@for(contentBlock of selectedContent; track $index) {
+		@for(contentBlock of selectedContent$ | async; track $index) {
 		<p class="block__paragraph">{{ contentBlock.content }}</p>
 		}
 	</div>
