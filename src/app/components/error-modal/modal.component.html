@@ -1,0 +1,75 @@
+@if(modal != null){
+<div class="modal__overlay">
+	<div class="modal">
+		<div class="modal__header">
+			<h2>{{ modal.title }}</h2>
+			<button class="close__button"
+					(click)="onClose()">
+				<span class="material-symbols-outlined">
+					close
+				</span>
+			</button>
+		</div>
+		<div class="modal__body">
+			@if(!viewAddingMode){
+			@if(modal.message?.length === 0 && !modal.error){
+			<ng-container [ngTemplateOutlet]="contentTemplate"
+						  [ngTemplateOutletContext]="{ $implicit: availableData, currentlyEdited: currentlyAddedOrEdited }"></ng-container>
+			}
+			@else {
+			<p>{{ modal.message }}</p>
+			}
+			}
+			@else {
+			<textarea class="modal__content__textarea"
+					  (input)="storeChanges($event.target)"></textarea>
+			}
+		</div>
+		<div class="modal__footer">
+			@if(!modal.error && !viewAddingMode){
+			<button (click)="add()"
+					class="button">Dodaj element</button>
+			}
+			<button class="button"
+					(click)="confirm()">OK</button>
+		</div>
+	</div>
+</div>
+}
+
+<ng-template #contentTemplate
+			 let-data
+			 let-currentlyEdited="currentlyEdited">
+	<div class="modal__content">
+		@for(data of availableData; track $index){
+		<div class="modal__content__row">
+			<div class="modal__content__id">Id {{ data.id }}</div>
+			@if(currentlyEdited.id !== data.id){
+			<p class="modal__content__data">{{ data.content }}</p>
+			}
+			@else {
+			<textarea class="modal__content__textarea"
+					  (input)="storeChanges($event.target)">{{ data.content }}</textarea>
+			}
+			<div class="modal__content__tools">
+				@if(currentlyEdited.id === data.id){
+				<div>
+					<button (click)="saveChanges(data.id, currentlyEdited.content)"
+							class="button">Zapisz zmiany</button>
+				</div>
+				}
+				<div> <span class="material-symbols-outlined modal__content__tool"
+						  (click)="currentlyAddedOrEdited.id = data.id">
+						edit
+					</span>
+					<span class="material-symbols-outlined modal__content__tool"
+						  (click)="storageService.deleteData(data.id)">
+						delete
+					</span>
+				</div>
+
+			</div>
+		</div>
+		}
+	</div>
+</ng-template>

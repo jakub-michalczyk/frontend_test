@@ -28,9 +28,33 @@
   &__body {
     margin: 0.625px 0;
   }
-
+  &__content {
+    overflow-y: auto;
+    max-height: 20rem;
+    padding: 1rem;
+    &__row {
+      border-bottom: 1px solid $charade;
+      padding: 1rem 0;
+    }
+    &__data {
+      font-size: 0.6rem;
+      color: $waterloo;
+    }
+    &__tools {
+      @include flex(space-between, center);
+    }
+    &__tool {
+      cursor: pointer;
+    }
+    &__textarea {
+      margin: 1em 0;
+      width: 100%;
+      min-height: 10rem;
+    }
+  }
   &__footer {
-    @include flex(flex-end, center);
+    @include flex(center, center);
+    flex-direction: column;
     margin-top: 2.25rem;
   }
 }
@@ -45,4 +69,5 @@
 
 .button {
   @extend ._button;
+  margin: 0.25rem 0;
 }

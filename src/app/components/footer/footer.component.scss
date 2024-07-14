@@ -1,0 +1,140 @@
+@import "../../../shared/colors";
+@import "../../../shared/mixins";
+@import "../../../shared/buttons";
+@import "../../../shared/constants";
+
+$logo_frame_size: 7.188rem;
+$mobile_logo_frame_size: 5rem;
+$slide_up_width: 16.875rem;
+$slide_up_height: 7.75rem;
+
+.footer {
+  position: relative;
+  color: $shark;
+  font-size: 1.25rem;
+  &__content {
+    @include flex(space-between, center);
+    border-top: 1px solid $black;
+    height: $bar_size;
+    background-color: $woodsmoke;
+    padding: 0.625rem 3.75rem;
+    position: relative;
+    z-index: 2;
+  }
+  &__company__logo {
+    padding: 0 0.375rem;
+    &__wrap {
+      display: none;
+      &::after,
+      &::before {
+        height: 1px;
+        content: "";
+        display: block;
+        background-color: $shark;
+        width: 3.5rem;
+      }
+      @media (min-width: 960px) {
+        @include flex(center, center);
+      }
+    }
+  }
+  &__logo {
+    margin-left: 1.5rem;
+    font-size: 1rem;
+    &__elem {
+      margin-top: 0.5rem;
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      border: 1px solid $shark;
+      width: $mobile_logo_frame_size;
+      height: $mobile_logo_frame_size;
+      transform: translateX(-1.5rem);
+    }
+    &:hover {
+      color: $white;
+      &::before {
+        animation: rotate 2s;
+        border: 1px solid $gold_drop;
+        transform-origin: center;
+      }
+    }
+    @media (min-width: 640px) {
+      width: $logo_frame_size;
+      height: $logo_frame_size;
+      font-size: 1.5rem;
+      &::before {
+        width: $logo_frame_size;
+        height: $logo_frame_size;
+      }
+    }
+  }
+  .button__wrap {
+    position: relative;
+    margin-top: 1.5rem;
+    @media (min-width: 640px) {
+      margin-top: 0;
+    }
+  }
+  .button {
+    @extend ._button__thin__border;
+    @include flex(center, center);
+    width: 8rem;
+    &__text {
+      padding-right: 0.25rem;
+    }
+    @media (min-width: 640px) {
+      width: $slide_up_width;
+    }
+  }
+  .toggle {
+    display: none;
+    &:checked + .slide__up {
+      top: -$slide_up_height;
+    }
+  }
+}
+
+.slide__up {
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  border: 1px solid $white;
+  height: $slide_up_height;
+  padding: 1.5rem;
+  width: $slide_up_width;
+  position: absolute;
+  margin-right: 3.75rem;
+  z-index: 1;
+  top: 1rem;
+  right: 0;
+  background-color: $white;
+  transition: top 0.2s ease-in-out;
+  border-radius: 3px;
+  font-size: 1rem;
+  -webkit-box-shadow: 3px -1px 27px -1px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 3px -1px 27px -1px rgba(0, 0, 0, 1);
+  box-shadow: 3px -1px 27px -1px rgba(0, 0, 0, 1);
+  &__row {
+    @include flex(flex-start, center);
+    cursor: pointer;
+    font-weight: bold;
+    &:hover {
+      color: $gold_drop;
+    }
+  }
+  @media (min-width: 640px) {
+    left: auto;
+    transform: none;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: translateX(-1.5rem) rotate(0);
+  }
+  to {
+    transform: translateX(-1.5rem) rotate(360deg);
+  }
+}

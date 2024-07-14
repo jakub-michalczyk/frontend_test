@@ -3,8 +3,9 @@
 @import "../../../shared/constants";
 
 .header {
-  max-height: $header_height;
+  z-index: 2;
   position: sticky;
+  height: $bar_size;
   top: 0;
   background-color: $woodsmoke;
   &__logo-link {
@@ -38,5 +39,8 @@
     overflow: hidden;
     transition: max-height 0.3s ease;
     font-weight: 100;
+    &__full__height {
+      max-height: 2.25rem;
+    }
   }
 }

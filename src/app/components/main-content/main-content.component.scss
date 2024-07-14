@@ -1,6 +1,7 @@
 @import "../../../shared/colors";
 @import "../../../shared/mixins";
 @import "../../../shared/buttons";
+@import "../../../shared/constants";
 
 $mainContentPadding: 3.125rem 1.875rem;
 $blockPaddingMobile: 0 1rem 1.125rem 1rem;
@@ -12,15 +13,13 @@ $blockPaddingTablet: 0 0rem 1.125rem 1rem;
 }
 
 :host {
-  @extend ._full_size;
   display: block;
 }
 
 .main__content {
   @include flex(flex-start, center);
-  @extend ._full_size;
+  min-height: calc(100vh - (2 * $bar_size));
   color: $white;
-  overflow-y: auto;
   flex-direction: column;
   background-color: $charade;
   padding: $mainContentPadding;
@@ -195,6 +194,9 @@ $blockPaddingTablet: 0 0rem 1.125rem 1rem;
   @media (min-width: 960px) {
     min-height: 40px;
     margin-bottom: 1.5rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     .checkmark {
       height: 40px;
